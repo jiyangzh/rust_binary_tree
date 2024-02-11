@@ -1,18 +1,20 @@
 mod tree_node;
+
 use std::{cell::RefCell, rc::Rc};
+use tree_node::{RefTreeNode, TreeNode};
 
 fn main() {
-    let mut node_1 = tree_node::TreeNode {
+    let mut node_1 = TreeNode {
         val: 220,
         left: None,
         right: None,
     };
-    let node_2 = tree_node::TreeNode {
+    let node_2 = TreeNode {
         val: 13,
         left: None,
         right: None,
     };
-    let node_3 = tree_node::TreeNode {
+    let node_3 = TreeNode {
         val: 123,
         left: None,
         right: None,
@@ -26,7 +28,7 @@ fn main() {
     );
 }
 
-fn tree_sum(root: Option<&tree_node::RefTreeNode>) -> i32 {
+fn tree_sum(root: Option<&RefTreeNode>) -> i32 {
     if let Some(root) = root {
         root.borrow().val
             + tree_sum(root.borrow().left.as_ref())
@@ -41,10 +43,7 @@ mod tests {
 
     use super::*;
 
-    use tree_node::TreeNode;
-
     #[test]
-
     fn test_tree_sum() {
         let mut node_1 = TreeNode {
             val: 20,
